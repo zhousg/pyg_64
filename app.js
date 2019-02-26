@@ -10,6 +10,8 @@ const artTemplate = require('express-art-template')
 const createError = require('http-errors')
 const path = require('path')
 const favicon = require('express-favicon')
+const middlewares = require('./middlewares')
+const routers = require('./routers')
 
 /*1.创建web应用*/
 const express = require('express')
@@ -25,17 +27,23 @@ app.engine('art', artTemplate)  //设置一个叫art的模版引擎
 //debug 使用的布尔值  false 生产环境  true 开发环境  实时更新页面 不进行压缩
 app.set('view options', {debug: process.env.NODE_ENV === 'development'})
 /*4.2 配置静态资源暴露*/
-app.use('/',express.static(path.join(__dirname,'./public')))
+app.use('/', express.static(path.join(__dirname, './public')))
 /*4.3 浏览器会自动的发送一个网站小图片的请求  路径  https://www.baidu.com/favicon.ico  */
 //建议大家使用 express-favicon 统一处理小图标
-app.use(favicon(path.join(__dirname,'./favicon.ico')))
+app.use(favicon(path.join(__dirname, './favicon.ico')))
+
+//自定义的中间件
+app.use(middlewares.global)
 
 /*2.定义业务路由*/
-app.get('/', (req, res, next) => {
-  // throw createError(500, 'Server Error')
-  // res.send('server ok')
-  res.render('home.art')
-})
+app.use(routers)
+// app.get('/', (req, res, next) => {
+//   // throw createError(500, 'Server Error')
+//   // res.send('server ok')
+//   //res.locals.site = require('./configs').site
+//   //res.render('home.art',{site:require('./configs').site})
+//   res.render('home.art')
+// })
 
 /*3.错误统一处理*/
 /*3.1 资源未找到*/
