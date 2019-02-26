@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ERROR PAGE</title>
+    <style>
+        .box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+        .error404{
+            background-image: url("/assets/img/404.png");
+        }
+        .error500{
+            background-image: url("/assets/img/500.png");
+        }
+    </style>
+</head>
+<body>
+<!--如果是 404  显示404.png-->
+<!--如果是 500  显示500.png-->
+<!--<h1>error {{status}}</h1>-->
+<div class="box {{status===404?'error404':'error500'}}"></div>
+</body>
+</html>

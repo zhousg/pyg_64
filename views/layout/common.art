@@ -1,0 +1,6 @@
+{{extend './basic.art'}}
+{{block 'body'}}
+    {{include '../component/header.art'}}
+    {{block 'content'}}{{/block}}
+    {{include '../component/footer.art'}}
+{{/block}}

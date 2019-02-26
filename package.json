@@ -1,0 +1,22 @@
+{
+  "name": "pyg_64",
+  "version": "1.0.0",
+  "description": "品优购前台",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "express": "^4.16.4",
+    "express-art-template": "^1.0.1",
+    "express-favicon": "^2.0.1",
+    "http-errors": "^1.7.2",
+    "youch": "^2.0.10"
+  }
+}

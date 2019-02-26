@@ -1,0 +1,188 @@
+<div id="nav-bottom">
+    <!--顶部-->
+    <div class="nav-top">
+        <div class="top">
+            <div class="py-container">
+                <div class="shortcut">
+                    <ul class="fl">
+                        <li class="f-item">品优购欢迎您！</li>
+                        <li class="f-item">请
+                            <a href="login.html">登录</a>
+                            <span>
+                  <a href="register.html">免费注册</a>
+                </span>
+                        </li>
+                    </ul>
+                    <ul class="fr">
+                        <li class="f-item">
+                            <a href="member-order.html">我的订单</a>
+                        </li>
+                        <li class="f-item space"></li>
+                        <li class="f-item">
+                            <a href="member.html">我的品优购</a>
+                        </li>
+                        <li class="f-item space"></li>
+                        <li class="f-item">关注品优购</li>
+                        <li class="f-item space"></li>
+                        <li class="f-item">网站导航</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--头部-->
+        <div class="header">
+            <div class="py-container">
+                <div class="yui3-g Logo">
+                    <div class="yui3-u Left logoArea">
+                        <a class="logo-bd" title="品优购" href="home.html"></a>
+                    </div>
+                    <div class="yui3-u Center searchArea">
+                        <div class="search">
+                            <form action="" class="sui-form form-inline">
+                                <div class="input-append">
+                                    <input type="text" id="autocomplete" type="text" class="input-error input-xxlarge">
+                                    <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="hotwords">
+                            <ul>
+                                <li class="f-item">品优购首发</li>
+                                <li class="f-item">亿元优惠</li>
+                                <li class="f-item">9.9元团购</li>
+                                <li class="f-item">每满99减30</li>
+                                <li class="f-item">亿元优惠</li>
+                                <li class="f-item">9.9元团购</li>
+                                <li class="f-item">办公用品</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="yui3-u Right shopArea">
+                        <div class="fr shopcar">
+                            <div class="show-shopcar">
+                                <span class="car"></span>
+                                <a class="sui-btn btn-default btn-xlarge" href="cart.html">
+                                    <span>我的购物车</span>
+                                    <i class="shopnum">0</i>
+                                </a>
+                                <div class="clearfix shopcarlist"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yui3-g NavList">
+                    <div class="all-sorts-list">
+                        <div class="yui3-u Left all-sort">
+                            <h4>全部商品分类</h4>
+                        </div>
+                        <div class="sort">
+                            <div class="all-sort-list2">
+                                <div class="item">
+                                    <h3><a href="list.html">图书、音像、数字商品</a></h3>
+                                    <div class="item-list clearfix">
+                                        <div class="subitem">
+                                            <dl>
+                                                <dt><a href="list.html">电子书</a></dt>
+                                                <dd>
+                                                    <em><a href="list.html">免费</a></em>
+                                                    <em><a href="list.html">小说</a></em>
+                                                    <em><a href="list.html">励志与成功</a></em>
+                                                    <em><a href="list.html">婚恋/两性</a></em>
+                                                    <em><a href="list.html">文学</a></em>
+                                                    <em><a href="list.html">经管</a></em>
+                                                    <em><a href="list.html">畅读VIP</a></em>
+                                                </dd>
+                                            </dl>
+                                            <dl>
+                                                <dt><a href="list.html">电子书</a></dt>
+                                                <dd>
+                                                    <em><a href="list.html">免费</a></em>
+                                                    <em><a href="list.html">小说</a></em>
+                                                    <em><a href="list.html">励志与成功</a></em>
+                                                    <em><a href="list.html">婚恋/两性</a></em>
+                                                    <em><a href="list.html">文学</a></em>
+                                                    <em><a href="list.html">经管</a></em>
+                                                    <em><a href="list.html">畅读VIP</a></em>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">家用电器</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">手机、数码</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">电脑、办公</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">家居、家具、家装、厨具</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">服饰内衣</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">个护化妆</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">运动健康</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">汽车用品</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">彩票、旅行</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">理财、众筹</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">母婴、玩具</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">箱包</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">运动户外</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                                <div class="item">
+                                    <h3><a href="list.html">箱包</a></h3>
+                                    <div class="item-list clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yui3-u Center navArea">
+                        <ul class="nav">
+                            <li class="f-item">服装城</li>
+                            <li class="f-item">美妆馆</li>
+                            <li class="f-item">品优超市</li>
+                            <li class="f-item">全球购</li>
+                            <li class="f-item">闪购</li>
+                            <li class="f-item">团购</li>
+                            <li class="f-item">有趣</li>
+                            <li class="f-item">秒杀</li>
+                        </ul>
+                    </div>
+                    <div class="yui3-u Right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
