@@ -4,6 +4,29 @@
 {{/block}}
 {{block 'scripts'}}
 <script src="assets/js/sui.carousel.js"></script>
+<script>
+  $(function () {
+    $('#xxlChg').on('click', function () {
+      //发请求 获取数据  渲染
+      $.get('/like', function (data) {
+        //拼接HTML格式字符串
+        let html = ''
+        data.result.forEach(function ($value, i) {
+            html += `
+                <li class="yui3-u-1-6">
+                    <a href="/item/${$value.id}" class="pic"><img src="${$value.thumbnail}"></a>
+                    <p>${$value.name}</p>
+                    <h3>¥${$value.price}</h3>
+                </li>
+            `
+        })
+        $('#picLBxxl').fadeOut(function () {
+          $(this).html(html).fadeIn()
+        })
+      })
+    })
+  })
+</script>
 {{/block}}
 {{block 'content'}}
 <!--列表-->
@@ -13,16 +36,15 @@
             <!--banner轮播-->
             <div id="banner" data-ride="carousel" data-interval="4000" class="sui-carousel slide">
                 <ol class="carousel-indicators">
-                    <li data-target="#banner" data-slide-to="0" class="active"></li>
-                    <li data-target="#banner" data-slide-to="1"></li>
-                    <li data-target="#banner" data-slide-to="2"></li>
-                    <li data-target="#banner" data-slide-to="3"></li>
+                    {{each sliders}}
+                    <li data-target="#banner" data-slide-to="{{$index}}" class="{{$index==0?'active':''}}"></li>
+                    {{/each}}
                 </ol>
                 <div class="carousel-inner">
-                    <div class="item active"><a href="#"><img src="/uploads/banner1.jpg"></a></div>
-                    <div class="item"><a href="#"><img src="/uploads/banner2.jpg"></a></div>
-                    <div class="item"><a href="#"><img src="/uploads/banner3.jpg"></a></div>
-                    <div class="item"><a href="#"><img src="/uploads/banner4.jpg"></a></div>
+                    {{each sliders}}
+                    <div class="item {{$index==0?'active':''}}"><a href="{{$value.link}}"><img
+                            src="{{$value.image}}"></a></div>
+                    {{/each}}
                 </div>
                 <a href="#banner" data-slide="prev" class="carousel-control left">‹</a>
                 <a href="#banner" data-slide="next" class="carousel-control right">›</a>
@@ -44,22 +66,35 @@
                 </ul>
             </div>
             <ul class="yui3-g Lifeservice">
-                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-1"></i><span class="service-intro">话费</span></li>
-                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-2"></i><span class="service-intro">机票</span></li>
-                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-3"></i><span class="service-intro">电影票</span></li>
-                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-4"></i><span class="service-intro">游戏</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-5"></i><span class="service-intro">彩票</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-6"></i><span class="service-intro">加油站</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-7"></i><span class="service-intro">酒店</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-8"></i><span class="service-intro">火车票</span></li>
-                <li class="yui3-u-1-4 life-item  notab-item"><i class="list-item list-item-9"></i><span class="service-intro">众筹</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-10"></i><span class="service-intro">理财</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-11"></i><span class="service-intro">礼品卡</span></li>
-                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-12"></i><span class="service-intro">白条</span></li>
+                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-1"></i><span
+                        class="service-intro">话费</span></li>
+                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-2"></i><span
+                        class="service-intro">机票</span></li>
+                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-3"></i><span
+                        class="service-intro">电影票</span></li>
+                <li class="yui3-u-1-4 life-item tab-item"><i class="list-item list-item-4"></i><span
+                        class="service-intro">游戏</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-5"></i><span
+                        class="service-intro">彩票</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-6"></i><span
+                        class="service-intro">加油站</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-7"></i><span
+                        class="service-intro">酒店</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-8"></i><span
+                        class="service-intro">火车票</span></li>
+                <li class="yui3-u-1-4 life-item  notab-item"><i class="list-item list-item-9"></i><span
+                        class="service-intro">众筹</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-10"></i><span
+                        class="service-intro">理财</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-11"></i><span
+                        class="service-intro">礼品卡</span></li>
+                <li class="yui3-u-1-4 life-item notab-item"><i class="list-item list-item-12"></i><span
+                        class="service-intro">白条</span></li>
             </ul>
             <div class="life-item-content">
                 <div class="life-detail">
-                    <i class="close">关闭</i><p>话费充值</p>
+                    <i class="close">关闭</i>
+                    <p>话费充值</p>
                     <form action="" class="sui-form form-horizontal">
                         号码：<input type="text" id="inputphoneNumber" placeholder="输入你的号码">
                     </form>
@@ -78,7 +113,10 @@
 <div class="show">
     <div class="py-container">
         <ul class="yui3-g Recommend">
-            <li class="yui3-u-1-6 clock"><div class="time"><img src="assets/img/clock.png"><h3>今日推荐</h3></div></li>
+            <li class="yui3-u-1-6 clock">
+                <div class="time"><img src="assets/img/clock.png">
+                    <h3>今日推荐</h3></div>
+            </li>
             <li class="yui3-u-5-24"><img src="/uploads/today01.png"></li>
             <li class="yui3-u-5-24"><img src="/uploads/today02.png"></li>
             <li class="yui3-u-5-24"><img src="/uploads/today03.png"></li>
@@ -92,34 +130,17 @@
     <div class="py-container">
         <div class="title">
             <h3 class="fl">猜你喜欢</h3>
-            <a href="#" class="fr tip changeBnt" id="xxlChg"><i></i>换一换</a>
+            <a href="javascript:;" class="fr tip changeBnt" id="xxlChg"><i></i>换一换</a>
         </div>
         <div class="bd">
             <ul class="clearfix yui3-g Favourate picLB" id="picLBxxl">
+                {{each likes}}
                 <li class="yui3-u-1-6">
-                    <a href="item.html" class="pic"><img src="/uploads/like_01.png"></a>
-                    <p>阳光美包新款单肩包女包时尚子母包四件套女</p><h3>¥116.00</h3>
+                    <a href="/item/{{$value.id}}" class="pic"><img src="{{$value.thumbnail}}"></a>
+                    <p>{{$value.name}}</p>
+                    <h3>¥{{$value.price}}</h3>
                 </li>
-                <li class="yui3-u-1-6">
-                    <a href="item.html" class="pic"><img src="/uploads/like_01.png"></a>
-                    <p>阳光美包新款单肩包女包时尚子母包四件套女</p><h3>¥116.00</h3>
-                </li>
-                <li class="yui3-u-1-6">
-                    <a href="item.html" class="pic"><img src="/uploads/like_01.png"></a>
-                    <p>阳光美包新款单肩包女包时尚子母包四件套女</p><h3>¥116.00</h3>
-                </li>
-                <li class="yui3-u-1-6">
-                    <a href="item.html" class="pic"><img src="/uploads/like_01.png"></a>
-                    <p>阳光美包新款单肩包女包时尚子母包四件套女</p><h3>¥116.00</h3>
-                </li>
-                <li class="yui3-u-1-6">
-                    <a href="item.html" class="pic"><img src="/uploads/like_01.png"></a>
-                    <p>阳光美包新款单肩包女包时尚子母包四件套女</p><h3>¥116.00</h3>
-                </li>
-                <li class="yui3-u-1-6">
-                    <a href="item.html" class="pic"><img src="/uploads/like_01.png"></a>
-                    <p>阳光美包新款单肩包女包时尚子母包四件套女</p><h3>¥116.00</h3>
-                </li>
+                {{/each}}
             </ul>
         </div>
     </div>

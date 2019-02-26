@@ -78,93 +78,25 @@
                         </div>
                         <div class="sort">
                             <div class="all-sort-list2">
+                                {{each categoryTree item i}}
                                 <div class="item">
-                                    <h3><a href="list.html">图书、音像、数字商品</a></h3>
+                                    <h3><a href="/list/{{item.id}}">{{item.name}}</a></h3>
                                     <div class="item-list clearfix">
                                         <div class="subitem">
+                                            {{each item.children subItem i}}
                                             <dl>
-                                                <dt><a href="list.html">电子书</a></dt>
+                                                <dt><a href="/list/{{subItem.id}}">{{subItem.name}}</a></dt>
                                                 <dd>
-                                                    <em><a href="list.html">免费</a></em>
-                                                    <em><a href="list.html">小说</a></em>
-                                                    <em><a href="list.html">励志与成功</a></em>
-                                                    <em><a href="list.html">婚恋/两性</a></em>
-                                                    <em><a href="list.html">文学</a></em>
-                                                    <em><a href="list.html">经管</a></em>
-                                                    <em><a href="list.html">畅读VIP</a></em>
+                                                    {{each subItem.children lastItem i}}
+                                                    <em><a href="/list/{{lastItem.id}}">{{lastItem.name}}</a></em>
+                                                    {{/each}}
                                                 </dd>
                                             </dl>
-                                            <dl>
-                                                <dt><a href="list.html">电子书</a></dt>
-                                                <dd>
-                                                    <em><a href="list.html">免费</a></em>
-                                                    <em><a href="list.html">小说</a></em>
-                                                    <em><a href="list.html">励志与成功</a></em>
-                                                    <em><a href="list.html">婚恋/两性</a></em>
-                                                    <em><a href="list.html">文学</a></em>
-                                                    <em><a href="list.html">经管</a></em>
-                                                    <em><a href="list.html">畅读VIP</a></em>
-                                                </dd>
-                                            </dl>
+                                            {{/each}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <h3><a href="list.html">家用电器</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">手机、数码</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">电脑、办公</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">家居、家具、家装、厨具</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">服饰内衣</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">个护化妆</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">运动健康</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">汽车用品</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">彩票、旅行</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">理财、众筹</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">母婴、玩具</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">箱包</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">运动户外</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="list.html">箱包</a></h3>
-                                    <div class="item-list clearfix"></div>
-                                </div>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
