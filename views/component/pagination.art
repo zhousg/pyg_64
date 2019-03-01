@@ -1,0 +1,45 @@
+{{if total > 1}}
+<div class="fr page">
+    <div class="sui-pagination pagination-large">
+        <ul>
+            {{if page > 1}}
+            <li class="prev"><a href="<%=getUrl(page-1)%>">«上一页</a></li>
+            {{else}}
+            <li class="prev disabled"><a href="javascript:;">«上一页</a></li>
+            {{/if}}
+            {{if start > 1}}
+            <li class="dotted"><span>...</span></li>
+            {{/if}}
+
+            <% for(var i = start ; i <= end ; i++){ %>
+            <li class="<%= i==page?'active':'' %>"><a href="<%=getUrl(i)%>"><%=i%></a></li>
+            <% } %>
+
+            {{if end < total }}
+            <li class="dotted"><span>...</span></li>
+            {{/if}}
+            {{if page < total}}
+            <li class="next"><a href="<%=getUrl(page+1)%>">下一页»</a></li>
+            {{else}}
+            <li class="next disabled"><a href="javascript:;">下一页»</a></li>
+            {{/if}}
+        </ul>
+        <div>
+            <span>共{{total}}页</span>
+            <form action="{{pathname}}" autocomplete="off"  style="display: inline-block">
+                <span>
+                    {{each query value key}}
+                    {{if key !== 'page'}}
+                    <input type="hidden" name="{{key}}" value="{{value}}">
+                    {{/if}}
+                    {{/each}}
+                    到第
+                    <input type="text" name="page" class="page-num">
+                    页
+                    <button class="page-confirm">确定</button>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>
+{{/if}}

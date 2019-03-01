@@ -15,3 +15,12 @@ exports.api = {
   username:'newshop-frontend',
   password:'d8667837fce5a0270a35f4a8fa14be479fadc774'
 }
+
+/*3. 连接数据库配置*/
+exports.mysql = {
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '123456',
+  database: 'newshop'
+}

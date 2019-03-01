@@ -12,6 +12,7 @@ const path = require('path')
 const favicon = require('express-favicon')
 const middlewares = require('./middlewares')
 const routers = require('./routers')
+const configs = require('./configs')
 
 /*1.创建web应用*/
 const express = require('express')
@@ -31,6 +32,29 @@ app.use('/', express.static(path.join(__dirname, './public')))
 /*4.3 浏览器会自动的发送一个网站小图片的请求  路径  https://www.baidu.com/favicon.ico  */
 //建议大家使用 express-favicon 统一处理小图标
 app.use(favicon(path.join(__dirname, './favicon.ico')))
+
+/*使用session步骤*/
+/*1. 安装包 express-session express-mysql-session*/
+/*2. 导包*/
+const session = require('express-session')
+const mysqlSession = require('express-mysql-session')
+/*3. 获取持久化构造函数*/
+const MySqlStore = mysqlSession(session)
+/*4. 连接mysql的配置项  configs.mysql*/
+/*5. 初始化持久化对象*/
+const sessionStore = new MySqlStore(configs.mysql)
+/*6. 使用session中间件*/
+app.use(session({
+  key: 'PYGSID',  //session id
+  secret: 'pyg_secret', //加密字符
+  store: sessionStore, //持久化对象
+  resave: false, //重新保存session  当session有有效期的时候回设置成true
+  saveUninitialized: false //是否在服务器启动的时候初始化session对象 还是在使用session的时候初始化session对象
+}))
+
+
+
+
 
 //自定义的中间件
 app.use(middlewares.global)

@@ -6,7 +6,9 @@
 <script src="assets/js/sui.carousel.js"></script>
 <script>
   $(function () {
-    $('#xxlChg').on('click', function () {
+    //jquery提供  绑定事件 on  解除事件 off    绑定事件bind  解除事件unbind
+    //原生js提供  绑定事件 addEventListener  解除事件 removeEventListener
+    $('#xxlChg').off('click').on('click', function () {
       //发请求 获取数据  渲染
       $.get('/like', function (data) {
         //拼接HTML格式字符串

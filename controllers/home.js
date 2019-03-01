@@ -18,7 +18,7 @@ exports.index = (req, res, next) => {
   //Promise.all()   可以执行多个异步操作 promise  而且会等 最慢的异步结果返回 才回去调用成功的回调
   //Promise.race()  可以执行多个异步操作 promise  而且只要 有异步操作返回结果 就回去调用成功的回调
   //传参 promise数组
-  Promise.all([settingsModel.getSliders(), productModel.getLikeProducts()])
+  Promise.all([settingsModel.getSliders(), productModel.getLikeProducts(6)])
     .then(results => {
       //results 是所各异步操作的返回结构的集合 类型数组  结构的顺序和你传入的顺序一致
       res.locals.sliders = results[0]
@@ -34,7 +34,7 @@ exports.index = (req, res, next) => {
 
 //返回猜你喜欢json格式数据
 exports.like = (req, res, next) => {
-  productModel.getLikeProducts().then(data => {
+  productModel.getLikeProducts(6).then(data => {
     //以json格式返回
     res.json({status: 200, result: data})
   }).catch(err => {

@@ -17,6 +17,8 @@
     "express": "^4.16.4",
     "express-art-template": "^1.0.1",
     "express-favicon": "^2.0.1",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.15.6",
     "http-errors": "^1.7.2",
     "youch": "^2.0.10"
   }
