@@ -36,7 +36,7 @@ exports.addCart = (req, res, next) => {
     res.cookie(configs.cartCookie.key, JSON.stringify(cartList), {expires})
     res.redirect(`/cart/addCartSuccess?id=${id}&num=${num}`)
   } else {
-
+    //TODO
   }
 }
 
@@ -84,12 +84,35 @@ exports.list = (req, res, next) => {
           name: item.name,
           thumbnail: item.thumbnail,
           price: item.price,
-          amount:item.amount,
+          amount: item.amount,
           num: +cartList[i].num  //cartList promiseArr results 顺序都是一样的
         }))
       })
     }).catch(err => {
       res.json({code: 500, msg: '获取购物车信息失败'})
     })
+  } else {
+    //TODO
+  }
+}
+
+//修改购物车商品数量的接口 返回json
+exports.edit = (req, res, next) => {
+  if (!req.session.user) {
+    //约定传参 id num 请求方式 post
+    const {id, num} = req.body
+    //获取购物车数据
+    const cartCookie = req.cookies[configs.cartCookie.key] || '[]'
+    const cartList = JSON.parse(cartCookie)
+    //修改
+    const product = cartList.find((item, i) => item.id == id)
+    product.num = +num
+    //存储
+    const expires = new Date(Date.now() + configs.cartCookie.expires)
+    res.cookie(configs.cartCookie.key, JSON.stringify(cartList), {expires})
+    //成功
+    res.json({code:200,msg:'修改成功'})
+  } else {
+    //TODO
   }
 }

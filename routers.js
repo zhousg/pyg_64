@@ -26,6 +26,7 @@ router.get('/cart/add', cartController.addCart)
 router.get('/cart/addCartSuccess', cartController.addCartSuccess)
 router.get('/cart', cartController.index)
 router.get('/cart/list', cartController.list)
+router.post('/cart/edit', cartController.edit)
 
 
 //更多的业务路由  TODO

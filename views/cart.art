@@ -2,7 +2,127 @@
 {{block 'styles'}}
 <link rel="stylesheet" href="/assets/css/page-cart.css">
 {{/block}}
-{{block 'scripts'}}{{/block}}
+{{block 'scripts'}}
+<script type="text/template" id="list">
+    <? for(var i=0;i<list.length;i++){ ?>
+    <? var item = list[i] ?>
+    <ul class="goods-list yui3-g">
+        <li class="yui3-u-1-24"><input type="checkbox" data-id="<?=item.id?>"></li>
+        <li class="yui3-u-12-24">
+            <div class="good-item">
+                <div class="item-img">
+                    <a href="/item/<?=item.id?>"><img src="<?=item.thumbnail?>"></a>
+                </div>
+                <div class="item-msg"><a href="/item/<?=item.id?>"><?=item.name?></a></div>
+            </div>
+        </li>
+        <li class="yui3-u-3-24">
+            <span class="price">￥<?=item.price?></span>
+        </li>
+        <li class="yui3-u-3-24">
+            <a href="javascript:;" class="increment mins">-</a>
+            <input type="text" readonly class="itxt" data-id="<?=item.id?>" value="<?=item.num?>"
+                   data-max="<?=item.amount?>" autocomplete="off">
+            <a href="javascript:;" class="increment plus">+</a>
+        </li>
+        <li class="yui3-u-4-24">
+            <span class="sum">￥<?=(item.num*item.price).toFixed(2)?></span>
+        </li>
+        <li class="yui3-u-1-24">
+            <a href="javascript:;">删除</a>
+        </li>
+    </ul>
+    <? } ?>
+</script>
+<script src="/assets/js/template-web.js"></script>
+<script>
+  $(function () {
+    //规则 <% js语法 %>  改成 <? js语法 ?>
+    template.defaults.rules[0].test = /<\?(#?)((?:==|=#|[=-])?)[ \t]*([\w\W]*?)[ \t]*(-?)\?>/
+    var calc = function () {
+      //总数计算和金额计算
+      //1. 获取全部选中的input不包含头部
+      var $checkedInputList = $('.cart-list [type="checkbox"]:checked')
+      //2. 根据当前选中的商品去找  数量和单价  根据数据获取window.list
+      //3. 一定需要知道商品的ID data-id
+      var count = 0  //数量
+      var total = 0  //金额
+      $checkedInputList.each(function (i, item) {
+        var id = item.dataset.id  //获取自定义属性
+        var product = list.find((item, i) => item.id == id)
+        count += product.num
+        total += product.num * product.price
+      })
+      //4. 计算 渲染 到页面
+      $('strong').html(count)
+      $('.summoney').html('¥' + total.toFixed(2))
+    }
+    //1. 获取购物车数据 且 渲染列表
+    $.get('/cart/list', function (data) {
+      //2. 前端渲染使用模版引擎来渲染
+      //2.1 准备数据  data
+      //2.2 准备模版  cart.art是后端模版在响应客户端之前解析
+      //2.3 模版的定义  script 标签 类型 text/template 指定ID
+      //2.4 调用模版函数返回HTML格式的字符串
+      //2.5 如果前后端同时使用art-template引擎 需要修改解析语法
+      var html = template('list', data)
+      //做数据缓存 目的以后方便操作
+      window.list = data.list
+      $('.cart-list').html(html)
+    })
+    //2. 单选
+    $('.cart-list').on('change', '[type="checkbox"]', function () {
+      //1. 进行全选的判断
+      const checkedLen = $('.cart-list [type="checkbox"]:checked').length
+      const listLen = $('.cart-list > ul').length
+      $('.cart-th [type="checkbox"]').prop('checked', checkedLen === listLen)
+      //2. 总数计算和金额计算
+      calc()
+    })
+    //3. 全选
+    $('.cart-th').on('change', '[type="checkbox"]', function () {
+      $('.cart-list [type="checkbox"]').prop('checked', $(this).prop('checked'))
+      calc()
+    })
+    //4. 修改数量   前后交互  需要接口
+    $('.cart-list').on('click', '.increment', function () {
+      var $input = $(this).siblings('input')
+      //获取当前value值
+      var num = $input.val()
+      var max = $input.data('max')
+      var id = $input.data('id')
+      if ($(this).hasClass('mins')) {
+        //减
+        if (num < 2) return false
+        num--
+      } else {
+        //加
+        if (num >= max) return false
+        num++
+      }
+      //测试
+      //$input.val(num)
+      $.post('/cart/edit', {id, num}, (data) => {
+        if (data.code == 200) {
+          //操作成功
+          //1. 修改数量
+          $input.val(num)
+          //2. 修改小计
+          var product = list.find((item, i) => item.id == id)
+          product.num = num
+          $(this).parent().next().find('span').html('￥' + (product.num * product.price).toFixed(2))
+          //3. 修改总数量和总金额
+          calc()
+        } else {
+          alert(data.msg)
+        }
+      })
+    })
+
+    //5. 删除 前后交互  需要接口
+  })
+</script>
+{{/block}}
 {{block 'content'}}
 <div class="py-container">
     <br>
@@ -15,7 +135,7 @@
     <div class="allgoods">
         <div class="cart-main">
             <div class="yui3-g cart-th">
-                <div class="yui3-u-1-24"><input type="checkbox" checked=""></div>
+                <div class="yui3-u-1-24"><input type="checkbox"></div>
                 <div class="yui3-u-12-24">商品</div>
                 <div class="yui3-u-3-24">单价（元）</div>
                 <div class="yui3-u-3-24">数量</div>
@@ -25,31 +145,7 @@
             <div class="cart-item-list">
                 <div class="cart-body">
                     <div class="cart-list">
-                        <ul class="goods-list yui3-g">
-                            <li class="yui3-u-1-24"><input type="checkbox" name="choose" value="701" checked=""></li>
-                            <li class="yui3-u-12-24">
-                                <div class="good-item">
-                                    <div class="item-img">
-                                        <a href="/item/701"><img src="https://image5.suning.cn/uimg/b2c/newcatentries/0000000000-000000000611256555_2_200x200.jpg"></a>
-                                    </div>
-                                    <div class="item-msg"><a href="/item/701">TCL 55A950C 55英寸 前置音响 人工智能 金属超薄 64位32核 4K+HDR 超高清智能 曲面电视（枪色）</a></div>
-                                </div>
-                            </li>
-                            <li class="yui3-u-3-24">
-                                <span class="price">￥3999.00</span>
-                            </li>
-                            <li class="yui3-u-3-24">
-                                <a href="/cart/update?id=701&amp;amount=3" class="increment mins">-</a>
-                                <input type="text" class="itxt" value="4" minnum="1" autocomplete="off">
-                                <a href="/cart/update?id=701&amp;amount=5" class="increment plus">+</a>
-                            </li>
-                            <li class="yui3-u-4-24">
-                                <span class="sum">￥15996.00</span>
-                            </li>
-                            <li class="yui3-u-1-24">
-                                <a href="/cart/delete?id=701">删除</a>
-                            </li>
-                        </ul>
+                        <!--TODO 待渲染-->
                     </div>
                 </div>
             </div>
@@ -57,8 +153,8 @@
         <div class="cart-tool">
             <div class="money-box">
                 <div class="sumprice">
-                    <span><strong>1</strong> 件商品</span><br>
-                    <span><em>总价（不含运费）：</em><i class="summoney">¥16283.00</i></span>
+                    <span><strong>0</strong> 件商品</span><br>
+                    <span><em>总价（不含运费）：</em><i class="summoney">¥0.00</i></span>
                 </div>
                 <div class="sumbtn">
                     <a class="sum-btn" href="checkout.html">结算</a>

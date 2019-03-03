@@ -51,13 +51,12 @@ app.use(session({
   resave: false, //重新保存session  当session有有效期的时候回设置成true
   saveUninitialized: false //是否在服务器启动的时候初始化session对象 还是在使用session的时候初始化session对象
 }))
-
-//cookie解析中间件
+//7. cookie解析中间件
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
-
-
-
+/*8. 处理post提交数据*/
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 //自定义的中间件
 app.use(middlewares.global)
