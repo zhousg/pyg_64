@@ -1,0 +1,70 @@
+{{extend './layout/common.art'}}
+{{block 'styles'}}
+<link rel="stylesheet" href="/assets/css/page-cart.css">
+{{/block}}
+{{block 'scripts'}}{{/block}}
+{{block 'content'}}
+<div class="py-container">
+    <br>
+    {{if !user}}
+    <div class="sui-msg msg-large msg-block msg-warning">
+        <div class="msg-con">您还没有登录！登录后购物车的商品将保存到您账号中 <a href="/login" class="sui-btn btn-danger">立即登录</a></div>
+        <s class="msg-icon"></s>
+    </div>
+    {{/if}}
+    <div class="allgoods">
+        <div class="cart-main">
+            <div class="yui3-g cart-th">
+                <div class="yui3-u-1-24"><input type="checkbox" checked=""></div>
+                <div class="yui3-u-12-24">商品</div>
+                <div class="yui3-u-3-24">单价（元）</div>
+                <div class="yui3-u-3-24">数量</div>
+                <div class="yui3-u-4-24">小计（元）</div>
+                <div class="yui3-u-1-24">操作</div>
+            </div>
+            <div class="cart-item-list">
+                <div class="cart-body">
+                    <div class="cart-list">
+                        <ul class="goods-list yui3-g">
+                            <li class="yui3-u-1-24"><input type="checkbox" name="choose" value="701" checked=""></li>
+                            <li class="yui3-u-12-24">
+                                <div class="good-item">
+                                    <div class="item-img">
+                                        <a href="/item/701"><img src="https://image5.suning.cn/uimg/b2c/newcatentries/0000000000-000000000611256555_2_200x200.jpg"></a>
+                                    </div>
+                                    <div class="item-msg"><a href="/item/701">TCL 55A950C 55英寸 前置音响 人工智能 金属超薄 64位32核 4K+HDR 超高清智能 曲面电视（枪色）</a></div>
+                                </div>
+                            </li>
+                            <li class="yui3-u-3-24">
+                                <span class="price">￥3999.00</span>
+                            </li>
+                            <li class="yui3-u-3-24">
+                                <a href="/cart/update?id=701&amp;amount=3" class="increment mins">-</a>
+                                <input type="text" class="itxt" value="4" minnum="1" autocomplete="off">
+                                <a href="/cart/update?id=701&amp;amount=5" class="increment plus">+</a>
+                            </li>
+                            <li class="yui3-u-4-24">
+                                <span class="sum">￥15996.00</span>
+                            </li>
+                            <li class="yui3-u-1-24">
+                                <a href="/cart/delete?id=701">删除</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-tool">
+            <div class="money-box">
+                <div class="sumprice">
+                    <span><strong>1</strong> 件商品</span><br>
+                    <span><em>总价（不含运费）：</em><i class="summoney">¥16283.00</i></span>
+                </div>
+                <div class="sumbtn">
+                    <a class="sum-btn" href="checkout.html">结算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}

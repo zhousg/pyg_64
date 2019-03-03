@@ -24,3 +24,9 @@ exports.mysql = {
   password: '123456',
   database: 'newshop'
 }
+
+/*4. 购物车相关配置*/
+exports.cartCookie = {
+  key:'pyg64_cart_info',
+  expires: 30 * 24 * 60 * 60 * 1000
+}

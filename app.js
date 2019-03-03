@@ -52,6 +52,9 @@ app.use(session({
   saveUninitialized: false //是否在服务器启动的时候初始化session对象 还是在使用session的时候初始化session对象
 }))
 
+//cookie解析中间件
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 
 

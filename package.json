@@ -14,6 +14,7 @@
   "dependencies": {
     "art-template": "^4.13.2",
     "axios": "^0.18.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-art-template": "^1.0.1",
     "express-favicon": "^2.0.1",

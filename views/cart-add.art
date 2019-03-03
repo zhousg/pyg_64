@@ -1,0 +1,28 @@
+{{extend './layout/common.art'}}
+{{block 'styles'}}
+<link rel="stylesheet" href="/assets/css/page-cart.css">
+{{/block}}
+{{block 'scripts'}}{{/block}}
+{{block 'content'}}
+<div class="success-cart">
+    <div class="py-container ">
+        <h3>
+            <i class="sui-icon icon-pc-right"></i>商品已成功加入购物车！</h3>
+        <div class="goods">
+            <div class="left-good">
+                <div class="left-pic">
+                    <img src="{{product.thumbnail}}">
+                </div>
+                <div class="right-info">
+                    <p class="title">{{product.name}}</p>
+                    <p class="attr">数量：{{product.num}}</p>
+                </div>
+            </div>
+            <div class="right-gocart">
+                <a href="/item/{{product.id}}" class="sui-btn btn-xlarge">查看商品详情</a>
+                <a href="/cart" class="sui-btn btn-xlarge btn-danger ">去购物车结算 ></a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}
