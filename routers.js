@@ -7,6 +7,8 @@ const listController = require('./controllers/list')
 const itemController = require('./controllers/item')
 const cartController = require('./controllers/cart')
 const usersController = require('./controllers/users')
+const orderController = require('./controllers/order')
+const middlewares = require('./middlewares')
 
 //添加若干个路由方法
 
@@ -31,9 +33,11 @@ router.post('/cart/edit', cartController.edit)
 router.post('/cart/remove', cartController.remove)
 
 //用户相关
-router.get('/login',usersController.login)
-router.post('/login',usersController.loginLogic)
+router.get('/login', usersController.login)
+router.post('/login', usersController.loginLogic)
 
+//订单相关
+router.get('/checkout', middlewares.checkLogin, orderController.checkout)  //结算（生成订单）
 
 //更多的业务路由  TODO
 

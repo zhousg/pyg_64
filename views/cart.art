@@ -170,7 +170,7 @@
                     <span><em>总价（不含运费）：</em><i class="summoney">¥0.00</i></span>
                 </div>
                 <div class="sumbtn">
-                    <a class="sum-btn" href="checkout.html">结算</a>
+                    <a class="sum-btn" href="/checkout">结算</a>
                 </div>
             </div>
         </div>

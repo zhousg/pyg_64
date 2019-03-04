@@ -12,10 +12,10 @@ exports.global = (req, res, next) => {
   //2.4 global 是全局对象  暴露给所有的程序使用   不建议这里保存
   //2.5 req res 对象 每次请求重新创建   req.app 对象里面做缓存
   //2.6 思路 如果缓存中有数据  走缓存  没有就发请求给接口服务器获取
-  if(req.app.locals.categoryTree){
+  if (req.app.locals.categoryTree) {
     res.locals.categoryTree = req.app.locals.categoryTree
     next()
-  }else{
+  } else {
     categoryModel.getCategoryTree()
       .then(data => {
         //缓存
@@ -24,4 +24,13 @@ exports.global = (req, res, next) => {
         next()
       }).catch(err => next(err))
   }
+}
+
+//定义拦截登录中间件
+exports.checkLogin = (req, res, next) => {
+  //登录拦截
+  if (!req.session.user) {
+    return res.redirect('/login?returnUrl=' + encodeURIComponent(req.url))
+  }
+  next()
 }

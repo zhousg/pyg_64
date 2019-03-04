@@ -11,6 +11,8 @@ exports.login = (req, res, next) => {
   //2. captcha {data:svg格式图片,text:图片的内容或者公式结果}
   res.locals.svg = captcha.data
   req.session.text = captcha.text //记录结果  下次校验对比
+  //需要回跳地址
+  res.locals.returnUrl = req.query.returnUrl || '/member' //个人中心首页
   res.render('login.art')
 }
 //登录逻辑
@@ -49,7 +51,8 @@ exports.loginLogic = (req, res, next) => {
     res.clearCookie(configs.cartCookie.key)
 
     /*登录成功业务完成  响应客户端*/
-
+    /*获取returnUrl 但是业务场景没有这个数据  在from的表单添加的*/
+    res.redirect(req.body.returnUrl||'/member') //严谨操作
   }).catch(err => {
     /*6. 补充：错误提示统一处理*/
     /*6.1 页面展示错误提示信息*/
@@ -68,6 +71,7 @@ exports.loginLogic = (req, res, next) => {
     const captcha = svgCaptcha.createMathExpr({width: 120, height: 30, fontSize: 30})
     res.locals.svg = captcha.data
     req.session.text = captcha.text //记录结果  下次校验对比
+    res.locals.returnUrl = req.body.returnUrl || '/member' //个人中心首页
     res.render('login.art')
   })
 }
