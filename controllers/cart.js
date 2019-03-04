@@ -111,7 +111,29 @@ exports.edit = (req, res, next) => {
     const expires = new Date(Date.now() + configs.cartCookie.expires)
     res.cookie(configs.cartCookie.key, JSON.stringify(cartList), {expires})
     //成功
-    res.json({code:200,msg:'修改成功'})
+    res.json({code: 200, msg: '修改成功'})
+  } else {
+    //TODO
+  }
+}
+
+//删除购物车商品接口 返回json
+exports.remove = (req, res, next) => {
+  const id = req.body.id   //商品ID
+  if (!req.session.user) {
+    //未登录
+    /*1. 获取*/
+    const cartCookie = req.cookies[configs.cartCookie.key] || '[]'
+    const cartList = JSON.parse(cartCookie)
+    /*2. 删除*/
+    //splice(index,1) 删除数组中某一项数据的操作
+    const index = cartList.findIndex((item, i) => item.id == id)
+    cartList.splice(index, 1)
+    /*3. 存储*/
+    const expires = new Date(Date.now() + configs.cartCookie.expires)
+    res.cookie(configs.cartCookie.key, JSON.stringify(cartList), {expires})
+    //响应
+    res.json({code: 200, msg: '删除成功'})
   } else {
     //TODO
   }

@@ -29,7 +29,7 @@
             <span class="sum">￥<?=(item.num*item.price).toFixed(2)?></span>
         </li>
         <li class="yui3-u-1-24">
-            <a href="javascript:;">删除</a>
+            <a href="javascript:;" data-id="<?=item.id?>" class="btn_remove">删除</a>
         </li>
     </ul>
     <? } ?>
@@ -118,8 +118,21 @@
         }
       })
     })
-
     //5. 删除 前后交互  需要接口
+    $('.cart-list').on('click', '.btn_remove', function () {
+      const id = this.dataset.id
+      $.post('/cart/remove', {id}, (data) => {
+        if (data.code == 200) {
+          //操作成功
+          //更新页面
+          $(this).parents('.goods-list').remove()
+          //更新 总件数 和 总金额
+          calc()
+        } else {
+          alert(data.msg)
+        }
+      })
+    })
   })
 </script>
 {{/block}}
@@ -128,7 +141,7 @@
     <br>
     {{if !user}}
     <div class="sui-msg msg-large msg-block msg-warning">
-        <div class="msg-con">您还没有登录！登录后购物车的商品将保存到您账号中 <a href="/login" class="sui-btn btn-danger">立即登录</a></div>
+        <div class="msg-con">您还没有登录！登录后购物车的商品将保存到您账号中 <a href="/login?returnUrl=/cart" class="sui-btn btn-danger">立即登录</a></div>
         <s class="msg-icon"></s>
     </div>
     {{/if}}

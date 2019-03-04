@@ -6,6 +6,7 @@ const homeController = require('./controllers/home')
 const listController = require('./controllers/list')
 const itemController = require('./controllers/item')
 const cartController = require('./controllers/cart')
+const usersController = require('./controllers/users')
 
 //添加若干个路由方法
 
@@ -27,6 +28,11 @@ router.get('/cart/addCartSuccess', cartController.addCartSuccess)
 router.get('/cart', cartController.index)
 router.get('/cart/list', cartController.list)
 router.post('/cart/edit', cartController.edit)
+router.post('/cart/remove', cartController.remove)
+
+//用户相关
+router.get('/login',usersController.login)
+router.post('/login',usersController.loginLogic)
 
 
 //更多的业务路由  TODO
