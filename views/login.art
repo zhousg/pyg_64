@@ -22,28 +22,35 @@
                         <img width="300" src="/assets/img/wx_cz.jpg" alt="">
                     </div>
                     <div id="profile" class="tab-pane active">
-                        <form class="sui-form" autocomplete="off">
+                        <form class="sui-form" action="/login" method="post" autocomplete="off">
                             <div class="input-prepend">
                                 <span class="add-on loginname"></span>
-                                <input type="text" class="span2 input-xfat" placeholder="用户名/邮箱">
+                                <input type="text" name="username" class="span2 input-xfat" placeholder="用户名/邮箱">
                             </div>
                             <div class="input-prepend">
                                 <span class="add-on loginpwd"></span>
-                                <input type="password" class="span2 input-xfat" placeholder="请输入密码">
+                                <input type="password" name="password" class="span2 input-xfat" placeholder="请输入密码">
                             </div>
                             <div class="input-prepend">
                                 <span class="add-on logincaptcha"></span>
                                 <input type="text" name="captcha" class="span2 input-xfat" placeholder="请输入验证码" style="width: 150px">
+                                {{@svg}}
                             </div>
                             <div class="setting">
-                                <label class="checkbox inline"><input name="m1" type="checkbox"> 自动登录</label>
+                                <label class="checkbox inline"><input name="auto" value="1" type="checkbox"> 自动登录</label>
+                                {{if msg}}
+                                <div class="sui-msg msg-error" style="margin-left: 20px">
+                                    <div class="msg-con">{{msg}}</div>
+                                    <s class="msg-icon"></s>
+                                </div>
+                                {{/if}}
                                 <span class="forget">忘记密码？</span>
                             </div>
                             <div class="logined">
-                                <a class="sui-btn btn-block btn-xlarge btn-danger" href="member.html">登&nbsp;&nbsp;录</a>
+                                <button class="sui-btn btn-block btn-xlarge btn-danger">登&nbsp;&nbsp;录</button>
                             </div>
                         </form>
-                        <a href="register.html">立即注册</a>
+                        <a href="/register">立即注册</a>
                     </div>
                 </div>
             </div>
