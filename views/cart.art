@@ -113,6 +113,10 @@
           $(this).parent().next().find('span').html('￥' + (product.num * product.price).toFixed(2))
           //3. 修改总数量和总金额
           calc()
+          //4. 修改头部的购物车数量
+          $('.shopnum').html(list.reduce((prev, item) => prev + parseInt(item.num), 0))
+          //头部需要修改列表
+          $('.shopcarlist ul').html(list.reduce((prev, item) => prev + `<li>${item.name}</li>`, ''))
         } else {
           alert(data.msg)
         }
@@ -126,8 +130,14 @@
           //操作成功
           //更新页面
           $(this).parents('.goods-list').remove()
+          //补充list数据
+          list.splice(list.findIndex((item, i) => item.id == id), 1)
           //更新 总件数 和 总金额
           calc()
+          //4. 修改头部的购物车数量
+          $('.shopnum').html(list.reduce((prev, item) => prev + parseInt(item.num), 0))
+          //头部需要修改列表
+          $('.shopcarlist ul').html(list.reduce((prev, item) => prev + `<li>${item.name}</li>`, ''))
         } else {
           alert(data.msg)
         }
@@ -141,7 +151,8 @@
     <br>
     {{if !user}}
     <div class="sui-msg msg-large msg-block msg-warning">
-        <div class="msg-con">您还没有登录！登录后购物车的商品将保存到您账号中 <a href="/login?returnUrl=/cart" class="sui-btn btn-danger">立即登录</a></div>
+        <div class="msg-con">您还没有登录！登录后购物车的商品将保存到您账号中 <a href="/login?returnUrl=/cart"
+                                                         class="sui-btn btn-danger">立即登录</a></div>
         <s class="msg-icon"></s>
     </div>
     {{/if}}

@@ -75,3 +75,8 @@ exports.loginLogic = (req, res, next) => {
     res.render('login.art')
   })
 }
+
+exports.logout = (req, res, next) => {
+  delete req.session.user
+  res.redirect('/login')
+}

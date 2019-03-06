@@ -34,6 +34,7 @@ router.post('/cart/remove', cartController.remove)
 
 //用户相关
 router.get('/login', usersController.login)
+router.get('/logout', usersController.logout)
 router.post('/login', usersController.loginLogic)
 
 //订单相关

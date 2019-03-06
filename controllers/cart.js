@@ -65,7 +65,6 @@ exports.addCartSuccess = (req, res, next) => {
 
 //展示购物车页面
 exports.index = (req, res, next) => {
-  res.locals.user = req.session.user
   //负责返回静态页面
   res.render('cart.art')
 }

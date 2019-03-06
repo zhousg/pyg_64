@@ -59,7 +59,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 //自定义的中间件
-app.use(middlewares.global)
+app.use(middlewares.global,middlewares.headCart)
 
 /*2.定义业务路由*/
 app.use(routers)
