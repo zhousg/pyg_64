@@ -1,0 +1,83 @@
+{{extend './layout/common.art'}}
+{{block 'styles'}}
+<link rel="stylesheet" href="/assets/css/page-cart.css">
+{{/block}}
+{{block 'scripts'}}
+<script src="/assets/js/sui.modal.js"></script>
+{{/block}}
+{{block 'content'}}
+<!--主内容-->
+<div class="checkout py-container">
+    <div class="sui-msg msg-large msg-block msg-success">
+        <div class="msg-con">恭喜您，亲支付成功啦！！！ <a href="/order">全部订单</a></div>
+        <s class="msg-icon"></s>
+    </div>
+    <div class="checkout-steps">
+        <div class="step-tit">
+            <h5>
+                <span>当前收件人信息</span>
+            </h5>
+        </div>
+        <div class="step-cont">
+            {{order.express_address}}
+        </div>
+        <div class="hr"></div>
+        <!--支付和送货-->
+        <div class="payshipInfo">
+            <div class="step-tit">
+                <h5>支付方式</h5>
+            </div>
+            <div class="step-cont">
+                <ul class="payType">
+                    <li class="selected">支付宝</li>
+                </ul>
+            </div>
+            <div class="hr"></div>
+            <div class="step-tit">
+                <h5>送货清单</h5>
+            </div>
+            <div class="step-cont">
+                <ul class="send-detail">
+                    <li>
+                        <div class="sendGoods">
+                            <span>商品清单：</span>
+                            {{each order.products}}
+                            <ul class="yui3-g">
+                                <li class="yui3-u-1-6">
+                                    <img src="{{$value.thumbnail}}">
+                                </li>
+                                <li class="yui3-u-2-3">
+                                    <div class="desc">{{$value.name}}</div>
+                                </li>
+                                <li class="yui3-u-1-12">
+                                    <div class="price">￥{{$value.price}}</div>
+                                </li>
+                                <li class="yui3-u-1-12">
+                                    <div class="num">x<strong>{{$value.amount}}</strong></div>
+                                </li>
+                            </ul>
+                            {{/each}}
+                        </div>
+                    </li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="hr"></div>
+        </div>
+        <div class="linkInfo">
+            <div class="step-tit">
+                <h5>发票信息</h5>
+            </div>
+            <div class="step-cont">
+                <span>普通发票（电子）</span>
+                <span>个人</span>
+                <span>明细</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="order-summary py-container">
+    <div class="static fl"><i class="number sui-text-danger">{{order.total_amount}}</i> 件商品，总商品金额 <i class="sui-text-danger">¥{{order.total_price}}</i></div>
+</div>
+{{/block}}

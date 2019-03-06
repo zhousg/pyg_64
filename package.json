@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "alipay-node-sdk": "^1.1.8",
     "art-template": "^4.13.2",
     "axios": "^0.18.0",
     "cookie-parser": "^1.4.4",

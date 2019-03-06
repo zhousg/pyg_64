@@ -143,6 +143,16 @@
         }
       })
     })
+    //6. 结算
+    $('.sum-btn').on('click', function () {
+      //跳转地址  /order/add?items=12,13
+      const items = []
+      $('.cart-list [type="checkbox"]:checked').each(function () {
+        items.push(this.dataset.id)
+      })
+      if (!items.length) return
+      location.href = '/order/add?items=' + items.join(',')
+    })
   })
 </script>
 {{/block}}
@@ -181,7 +191,7 @@
                     <span><em>总价（不含运费）：</em><i class="summoney">¥0.00</i></span>
                 </div>
                 <div class="sumbtn">
-                    <a class="sum-btn" href="/checkout">结算</a>
+                    <a class="sum-btn" href="javascript:;">结算</a>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ const express = require('express')
 
 const app = express()
 
-app.listen(5000, () => console.log('pyg_64 server started'))
+app.listen(3000, () => console.log('pyg_64 server started'))
 
 /*4.配置一些公用的中间件*/
 /*4.1 配置模版引擎 art-template*/
